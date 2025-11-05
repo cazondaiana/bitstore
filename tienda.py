@@ -240,4 +240,4 @@ if __name__ == "__main__":
     app = crear_aplicacion()
     with app.app_context():
         bd.create_all()
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000)
