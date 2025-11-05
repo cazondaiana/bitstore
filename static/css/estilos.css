@@ -1,0 +1,224 @@
+/* === Estilo general de la tienda BitStore === */
+
+body {
+  font-family: 'Inter', Arial, sans-serif;
+  margin: 0;
+  background: #f6f8fa;
+  color: #333;
+}
+
+/* === Encabezado principal === */
+.encabezado {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  background: #0d6efd;
+  color: white;
+}
+
+.encabezado a {
+  color: white;
+  text-decoration: none;
+  margin: 0 0.5rem;
+}
+
+.encabezado nav a:hover {
+  text-decoration: underline;
+}
+
+/* === Contenedor principal === */
+.contenedor {
+  display: flex;
+  padding: 2rem;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+/* === Barra lateral === */
+.barra-lateral {
+  width: 200px;
+}
+
+.barra-lateral ul {
+  list-style: none;
+  padding: 0;
+}
+
+.barra-lateral li {
+  margin-bottom: 0.5rem;
+}
+
+.barra-lateral a {
+  color: #0d6efd;
+  text-decoration: none;
+}
+
+.barra-lateral a:hover {
+  text-decoration: underline;
+}
+
+/* === Catálogo principal === */
+.catalogo {
+  flex: 1;
+}
+
+/* === NUEVA SECCIÓN: Grilla de productos === */
+.grilla {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 👈 tres columnas por fila */
+  gap: 2rem; /* espacio entre tarjetas */
+  justify-items: center;
+  align-items: start;
+  padding-top: 0.5rem;
+}
+
+/* Tarjetas de producto */
+.tarjeta {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
+  text-align: center;
+  transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  width: 100%;
+  max-width: 280px; /* 👈 ancho máximo para que entren 3 por fila */
+}
+
+.tarjeta:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.tarjeta a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Imagen dentro de la tarjeta */
+.imagen img {
+  width: 100%;
+  height: 180px;
+  object-fit: contain;
+  border-radius: 10px;
+  margin-bottom: 0.5rem;
+}
+
+/* Nombre y precio */
+.tarjeta h4 {
+  margin: 0.8rem 0 0.4rem 0;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+.precio {
+  color: #0d6efd;
+  font-weight: bold;
+  font-size: 1.1rem;
+  margin-bottom: 0.3rem;
+}
+
+.stock {
+  font-size: 0.9rem;
+  color: #555;
+}
+
+/* === Pie de página === */
+.pie {
+  text-align: center;
+  padding: 1rem;
+  background: #0d6efd;
+  color: white;
+  margin-top: 2rem;
+}
+
+/* === Mensajes flash === */
+.mensajes .mensaje {
+  margin: 1rem auto;
+  padding: 1rem;
+  border-radius: 8px;
+  width: 80%;
+  text-align: center;
+}
+
+.mensaje.success {
+  background-color: #d1e7dd;
+  color: #0f5132;
+}
+
+.mensaje.error {
+  background-color: #f8d7da;
+  color: #842029;
+}
+
+/* === Estilos del detalle de producto === */
+.detalle-producto {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.contenedor-imagen {
+  flex: 1 1 300px;
+  max-width: 400px;
+  text-align: center;
+}
+
+.imagen-producto {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+  object-fit: contain;
+}
+
+.informacion-producto {
+  flex: 1 1 300px;
+  max-width: 500px;
+}
+
+.precio {
+  font-size: 1.5rem;
+  color: #0077cc;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+.boton {
+  background-color: #0d6efd;
+  color: white;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.boton:hover {
+  background-color: #0b5ed7;
+}
+
+/* === Diseño adaptable (responsive) === */
+@media (max-width: 1024px) {
+  .grilla {
+    grid-template-columns: repeat(2, 1fr); /* 👈 dos por fila en pantallas medianas */
+  }
+}
+
+@media (max-width: 768px) {
+  .contenedor {
+    flex-direction: column;
+  }
+
+  .barra-lateral {
+    width: 100%;
+    position: relative;
+  }
+
+  .grilla {
+    grid-template-columns: 1fr; /* 👈 uno por fila en móviles */
+  }
+}

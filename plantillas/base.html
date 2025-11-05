@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>BitStore</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/estilos.css') }}">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+</head>
+<body>
+  <!-- Encabezado principal de la tienda -->
+  <header class="encabezado">
+    <a class="marca" href="{{ url_for('inicio') }}">BitStore</a>
+
+    <!-- Buscador de productos -->
+    <form action="{{ url_for('inicio') }}" method="get" class="buscador">
+      <input name="q" placeholder="Buscar producto..." value="{{ busqueda if busqueda is defined else '' }}">
+      <button type="submit">Buscar</button>
+    </form>
+
+    <!-- Navegación -->
+    <nav>
+      <a href="{{ url_for('ver_carrito') }}">🛒 Carrito</a>
+      {% if current_user.is_authenticated %}
+        <span>👋 Hola, {{ current_user.nombre_usuario }}</span>
+        {% if current_user.es_admin %}
+          <a href="{{ url_for('admin_productos') }}">Panel Admin</a>
+        {% endif %}
+        <a href="{{ url_for('cerrar_sesion') }}">Cerrar sesión</a>
+      {% else %}
+        <a href="{{ url_for('iniciar_sesion') }}">Iniciar sesión</a>
+        <a href="{{ url_for('registro') }}">Registrarse</a>
+      {% endif %}
+    </nav>
+  </header>
+
+  <!-- Contenido principal -->
+  <main class="contenedor">
+    {% with mensajes = get_flashed_messages(with_categories=true) %}
+      {% if mensajes %}
+        <div class="mensajes">
+          {% for tipo, texto in mensajes %}
+            <div class="mensaje {{ tipo }}">{{ texto }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    {% block contenido %}{% endblock %}
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="pie">
+    <small>BitLegion © 2025 - Proyecto Final de Programación IV</small>
+  </footer>
+
+  <script src="{{ url_for('static', filename='js/carrito.js') }}"></script>
+</body>
+</html>

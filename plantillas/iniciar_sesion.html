@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h2>Iniciar sesión</h2>
+<form method="post" class="formulario">
+  <label>Usuario o correo:
+    <input name="nombre" required>
+  </label>
+  <label>Contraseña:
+    <input name="contraseña" type="password" required>
+  </label>
+  <button type="submit">Entrar</button>
+</form>
+{% endblock %}

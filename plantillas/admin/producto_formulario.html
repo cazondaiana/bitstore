@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h2>{% if producto %}Editar{% else %}Nuevo{% endif %} producto</h2>
+<form method="post" class="formulario">
+  <label>Código:
+    <input name="codigo" value="{{ producto.codigo if producto else '' }}">
+  </label>
+  <label>Nombre:
+    <input name="nombre" value="{{ producto.nombre if producto else '' }}">
+  </label>
+  <label>Descripción:
+    <textarea name="descripcion">{{ producto.descripcion if producto else '' }}</textarea>
+  </label>
+  <label>Precio:
+    <input name="precio" value="{{ producto.precio if producto else '' }}">
+  </label>
+  <label>Stock:
+    <input name="stock" value="{{ producto.stock if producto else 0 }}">
+  </label>
+  <label>Categoría:
+    <select name="categoria">
+      <option value="">-- Ninguna --</option>
+      {% for c in categorias %}
+        <option value="{{ c.id }}" {% if producto and producto.categoria_id==c.id %}selected{% endif %}>{{ c.nombre }}</option>
+      {% endfor %}
+    </select>
+  </label>
+  <label>Imagen (ruta o URL):
+    <input name="imagen" value="{{ producto.imagen if producto else '' }}">
+  </label>
+  <button type="submit">Guardar</button>
+</form>
+{% endblock %}

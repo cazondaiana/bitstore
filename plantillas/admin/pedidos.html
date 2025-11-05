@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h2>Pedidos realizados</h2>
+<table class="tabla-admin">
+  <thead>
+    <tr><th>ID</th><th>Usuario</th><th>Total</th><th>Fecha</th><th>Estado</th></tr>
+  </thead>
+  <tbody>
+    {% for p in pedidos %}
+      <tr>
+        <td>{{ p.id }}</td>
+        <td>{{ p.usuario.nombre_usuario if p.usuario else 'Anónimo' }}</td>
+        <td>${{ "%.2f"|format(p.total) }}</td>
+        <td>{{ p.fecha_creacion.strftime("%d/%m/%Y %H:%M") }}</td>
+        <td>{{ p.estado }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

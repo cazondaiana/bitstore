@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h2>Confirmar compra</h2>
+
+<!-- Listado de productos a comprar -->
+<ul>
+  {% for p, cant, subtotal in items %}
+    <li>{{ p.nombre }} x{{ cant }} — ${{ "{:,.2f}".format(subtotal).replace(",", "X").replace(".", ",").replace("X", ".") }}</li>
+  {% endfor %}
+</ul>
+
+<p>Total a pagar: <strong>${{ "{:,.2f}".format(total).replace(",", "X").replace(".", ",").replace("X", ".") }}</strong></p>
+
+<!-- Simulación de confirmación de compra -->
+<form method="post">
+  <p>Dirección de envío: 
+    <input name="direccion" placeholder="Calle, número, ciudad">
+  </p>
+  <button type="submit">Confirmar compra</button>
+</form>
+{% endblock %}

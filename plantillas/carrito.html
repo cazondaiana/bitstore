@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block contenido %}
+<h2>Tu carrito de compras</h2>
+
+<!-- Formulario para actualizar cantidades -->
+<form action="{{ url_for('actualizar_carrito') }}" method="post">
+  <table class="tabla-carrito">
+    <thead>
+      <tr>
+        <th>Producto</th>
+        <th>Precio</th>
+        <th>Cantidad</th>
+        <th>Subtotal</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for it in items %}
+      <tr>
+        <!-- Nombre del producto -->
+        <td>{{ it.producto.nombre }}</td>
+        <td>${{ "{:,.0f}".format(it.producto.precio).replace(",", ".") }}</td>
+        <td>
+          <input type="number"
+                 name="cantidad_{{ it.producto.id }}"
+                 value="{{ it.cantidad }}"
+                 min="0"
+                 max="{{ it.producto.stock }}">
+        </td>
+        <td>${{ "{:,.0f}".format(it.subtotal).replace(",", ".") }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+
+  <!-- Total general del carrito -->
+  <p>Total: <strong>${{ "{:,.0f}".format(total).replace(",", ".") }}</strong></p>
+
+  <div class="acciones">
+    <button type="submit">Actualizar carrito</button>
+    <a class="btn" href="{{ url_for('confirmar_compra') }}">Ir al pago</a>
+    <a class="btn" href="{{ url_for('vaciar_carrito') }}">Vaciar carrito</a>
+  </div>
+</form>
+
+{% endblock %}

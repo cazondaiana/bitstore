@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block contenido %}
+  <!-- Barra lateral con las categorías -->
+  <aside class="barra-lateral">
+    <h3>Categorías</h3>
+    <ul>
+      <li><a href="{{ url_for('inicio') }}">Todas</a></li>
+      {% for c in categorias %}
+        <li><a href="{{ url_for('inicio', cat=c.id) }}">{{ c.nombre }}</a></li>
+      {% endfor %}
+    </ul>
+  </aside>
+
+  <!-- Catálogo de productos -->
+  <section class="catalogo">
+    {% if productos %}
+      <div class="grilla">
+      {% for p in productos %}
+        <article class="tarjeta">
+          <a href="{{ url_for('detalle_producto', id_producto=p.id) }}">
+            <div class="imagen">
+                <img src="{{ url_for('static', filename=p.imagen or 'img/placeholder.png') }}" alt="{{ p.nombre }}">
+            </div>
+            <h4>{{ p.nombre }}</h4>
+            <p class="precio">${{ "{:,.0f}".format(p.precio).replace(",", ".") }}</p>
+            <p class="stock">
+              {% if p.stock > 0 %}Stock: {{ p.stock }}{% else %}Agotado{% endif %}
+            </p>
+          </a>
+        </article>
+      {% endfor %}
+      </div>
+    {% else %}
+      <p>No se encontraron productos.</p>
+    {% endif %}
+  </section>
+{% endblock %}
