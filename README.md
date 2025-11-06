@@ -1,7 +1,6 @@
 # BitStore
 
-**BitStore** es un e-commerce de hardware desarrollado como proyecto final de la materia *Programación*.  
-Está construido con **Python (Flask)** y **Docker**, e incluye funcionalidades completas de tienda virtual.
+**BitStore** es un e-commerce de hardware desarrollado por el grupo BitLegion de la cohorte 2024, como proyecto final de la materia Programación IV de la Tecnicatura Universitaria en Programación, dictada en la Universidad Nacional Tecnológica con sede en San Rafael.  
 
 
 ## Funcionalidades principales
@@ -22,15 +21,16 @@ Está construido con **Python (Flask)** y **Docker**, e incluye funcionalidades 
 - **Frontend:** HTML, CSS, Jinja2  
 - **Base de datos:** SQLite  
 - **Servidor:** Gunicorn (en contenedor Docker)  
-- **Despliegue:** Fly.io / Render  
+- **Deploy:** Render  
 
 ---
 
-## 🐳 Ejecución local con Docker
+## Ejecución local
 
-```bash
-# Construir la imagen
-docker build -t bitstore .
+Recomendamos clonar el repositorio, y luego crear el entorno virtual con los requisitos de requirements.txt para lograr una ejecución exitosa del e-commerce
 
-# Ejecutar el contenedor
-docker run -p 5000:5000 bitstore
+
+python -m venv venv
+venv\Scripts\activate  # En Windows
+# o
+source venv/bin/activate  # En Linux/Mac
