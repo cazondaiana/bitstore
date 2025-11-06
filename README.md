@@ -20,8 +20,7 @@ https://bitstore-hok8.onrender.com/
 
 - **Backend:** Flask + SQLAlchemy  
 - **Frontend:** HTML, CSS, Jinja2  
-- **Base de datos:** SQLite  
-- **Servidor:** Gunicorn (en contenedor Docker)  
+- **Base de datos:** SQLite    
 - **Deploy:** Render  
 
 ---
